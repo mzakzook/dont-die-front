@@ -1,14 +1,23 @@
 import React from 'react'
 import SpeciesCard from './SpeciesCard'
-import './Discover.css'
+import './Discover.scss'
 
 class DiscoverPage extends React.Component {
     state = {
-       species:  []
+        species: [],
+        addSpecies: null
     }
 
-    handleClickAddButton = () => {
+    showConfirmation = () => {
+        console.log('hello')
+    }
+    
 
+    handleClickAddButton = (event) => {
+        console.log(event.target)
+        this.setState({
+            addSpecies: this.showConfirmation()
+        })
     }
 
     getAllSpecies = () => {
@@ -25,17 +34,18 @@ class DiscoverPage extends React.Component {
         this.getAllSpecies()
     }
 
-    
+
     render() {
         return (
-            <div class="container">
+            <div className="discover-container">
                 {this.state.species.map(s => {
-                  return <SpeciesCard key={s.id} species={s} /> }) 
+                    return <SpeciesCard key={s.id} species={s} add={this.handleClickAddButton} />
+                })
                 }
             </div>
         )
     }
-        
+
 }
 
 export default DiscoverPage 

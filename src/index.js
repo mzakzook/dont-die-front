@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.css';
 import 'typeface-roboto';
-import DiscoverPage from './components/DiscoverPage';
+import DiscoverPage from './components/DiscoverPage/DiscoverPage';
 import Login from './Login'
 import * as serviceWorker from './serviceWorker';
 
