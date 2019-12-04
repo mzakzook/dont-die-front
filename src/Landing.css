@@ -1,0 +1,32 @@
+.landingWrapper {
+    /* background: blue; */
+    margin: 20px
+}
+
+.landingContent {
+    text-align: center;
+    margin: auto 10px;    
+}
+
+.landingLeft {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.landingRight {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.landingRight .landingContent {
+    text-align: center;
+}
+
+.landingImg {
+    width: 100%;
+}
+
+.appButton {
+
+    margin: 10px;
+}
