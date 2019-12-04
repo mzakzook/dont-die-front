@@ -1,0 +1,24 @@
+div {
+    display: grid;
+  }
+
+  .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 30px;
+      padding: 60px;
+  }
+
+img {
+    border-radius: 8px;
+    height: 450px;
+    width: 355px;
+}
+
+.btn {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    top: 75%;
+    left: 50%;
+    right: 50%;
+}
