@@ -7,7 +7,7 @@ class NewUser extends React.Component {
     this.state = {
       error: false,
       fields: {
-        fullname: '',
+        name: '',
         username: '',
         password: ''
       }
@@ -20,10 +20,10 @@ class NewUser extends React.Component {
   };
 
   handleSubmit = e => {
-    const { fullname, username, password } = this.state.fields
+    const { name, username, password } = this.state.fields
     e.preventDefault();
     api.auth
-      .create(fullname, username, password)
+      .create(name, username, password)
 
   };
 
@@ -39,7 +39,7 @@ class NewUser extends React.Component {
             <div className="ui field">
               <label>Full Name</label>
               <input
-                name="fullname"
+                name="name"
                 placeholder="Full Name"
                 value={fields.fullname}
                 onChange={this.handleChange}
