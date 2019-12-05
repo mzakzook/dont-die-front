@@ -4,6 +4,7 @@ import Login from './Login';
 import './App.css';
 import NavBar from './NavBar'
 import NewUser from './NewUser'
+import Landing from './Landing'
 
 class App extends React.Component {
   state = { 
@@ -24,6 +25,7 @@ class App extends React.Component {
     }
   }
 
+ 
   handleLogin = user => {
     const currentUser = { currentUser: user };
     localStorage.setItem('token', user.token);
@@ -44,9 +46,9 @@ class App extends React.Component {
     if (this.state.navButtons === 'signin') {
       return <Login handleLogin={this.handleLogin} />
     } else if (this.state.navButtons === 'signup') {
-      return <NewUser />
+      return <NewUser handleLogin={this.handleLogin} />
     } else {
-      return 'LANDING PAGE GOES HERE OR ELSE!!!!'
+      return <Landing />
     }
   }
 
@@ -60,6 +62,7 @@ class App extends React.Component {
           {/* THIS IS WHERE THE LOGIN OR SIGNUP GOES */}
           {this.drawInput()}
         </div>
+        {console.log(this.state)}
       </div>
     );
   }
