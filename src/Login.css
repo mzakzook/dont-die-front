@@ -1,15 +1,16 @@
 .signInWrapper {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .imgBox {
-    display: grid;
+    /* display: grid; */
     height: 100%;
+    
 }
 
-.center-fit {
-    max-width: 100%;
+.right-fit {
+    max-width: 100vh;
     max-height: 100vh;
-    margin: auto;
+    float: right;
 }

@@ -1,4 +1,16 @@
 .signUpWrapper {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
+} 
+
+.imgBox {
+    /* display: grid; */
+    height: 100%;
+    
+}
+
+.left-fit {
+    max-width: 100vh;
+    max-height: 100vh;
+    float: left;
 }

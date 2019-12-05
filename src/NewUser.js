@@ -1,7 +1,8 @@
 import React from 'react';
 import api from './services/api';
 import './NewUser.css';
- 
+import sidepic from './pics/SignUp_LeftAlignedImg.png'
+
 class NewUser extends React.Component {
   constructor() {
     super();
@@ -41,7 +42,10 @@ class NewUser extends React.Component {
     const { fields } = this.state;
     return (
         <div className='signUpWrapper'>
-            <div>SOMETHING NEXT TO THE FORMS OR SOMETHING</div>
+            <div className='imgBox'>
+              <img className='left-fit'src={sidepic} alt='' />
+            </div>
+            
             <div>
                 <h2>SIGN UP</h2>
                 {this.state.error ? <h1>Try Again</h1> : null}

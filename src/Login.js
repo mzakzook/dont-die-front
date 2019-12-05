@@ -73,7 +73,7 @@ class Login extends React.Component {
           </div>
         </div>
         <div className='imgBox'>
-          <img className='center-fit'src={sidepic} alt='' />
+          <img className='right-fit'src={sidepic} alt='' />
         </div>
       </div> 
     );
