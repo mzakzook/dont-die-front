@@ -49,6 +49,7 @@ class NewUser extends React.Component {
             </div>
             
             <div>
+                
                 <h2>SIGN UP</h2>
                 {this.state.error ? <h1>Try Again</h1> : null}
                 <div className="ui form">
@@ -58,7 +59,6 @@ class NewUser extends React.Component {
                     <label>Full Name</label><br/>
                     <input
                         name="name"
-                        placeholder="Full Name"
                         value={fields.fullname}
                         onChange={this.handleChange}
                     />
@@ -68,7 +68,6 @@ class NewUser extends React.Component {
                     <label>Username</label><br/>
                     <input
                         name="username"
-                        placeholder="username"
                         value={fields.username}
                         onChange={this.handleChange}
                     />
@@ -78,11 +77,11 @@ class NewUser extends React.Component {
                     <input
                         name="password"
                         type="password"
-                        placeholder="password"
                         value={fields.password}
                         onChange={this.handleChange}
                     />
                     </div>
+                  
                     Or sign in with<br/>
                     <div>
                       <img className='loginIcon' src={googleIcon} alt='' />
