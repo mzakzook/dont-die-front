@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import logo from './logo.svg';
 import api from './services/api';
 import Login from './components/Login';
 import './App.css';
 import MyPlants from './containers/MyPlants';
 import { Route, Switch, withRouter } from 'react-router-dom';
+
 
 class App extends React.Component {
   state = { 
@@ -74,7 +75,9 @@ class App extends React.Component {
             <Route path="/my-plants" render={routerProps => {
               // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
               return (
-                <MyPlants {...routerProps} plants={plants} fetchPlants={this.fetchPlants} />
+                <Fragment>
+                <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
+                </Fragment>
               );
             }}
             />

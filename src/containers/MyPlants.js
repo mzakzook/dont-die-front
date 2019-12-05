@@ -1,13 +1,29 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from "react";
 import PlantCard from "../components/PlantCard";
 import Edit from "../components/modals/Edit"
+import "../components/PlantCard.css"
+import DeleteConfirm from "../components/modals/DeleteConfirm"
+
+
 
 
 class MyPlants extends Component {
-  
+
   state = {
     show: false,
-    plant: {}
+    plant: {},
+    delete: false,
+    alteredPlants: []
+  }
+
+  alterPlants = (e) => {
+    debugger
+    const newArr = this.props.plants.filter(plant => plant.attributes.name.toLowerCase().includes(e.target.value.toLowerCase()) || plant.attributes.species.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    this.setState({
+      alteredPlants: newArr
+    }, () => {
+      console.log(newArr[0])
+    })
   }
 
   showEdit = (plant) => {
@@ -20,43 +36,30 @@ class MyPlants extends Component {
   onClose = () => {
     this.setState({
       show: false,
+      delete: false,
       plant: {}
     })
   }
 
-  saveEdit = (e) => {
-    
-    if (e.plantName.length > 0 && e.notes.length > 0) {
-      let saveBody = {name: e.plantName, notes: e.notes}
+  saveEdit = (e, plant) => {
+    e.preventDefault()
+    if (plant.plantName.length > 0 && plant.notes.length > 0) {
+      let saveBody = { name: plant.plantName, notes: plant.notes }
       this.editMyPlant(saveBody)
-    } else if (e.plantName.length > 0) {
-      let saveBody = {name: e.plantName}
+    } else if (plant.plantName.length > 0) {
+      let saveBody = { name: plant.plantName }
       this.editMyPlant(saveBody)
-    } else if (e.notes.length > 0) {
-      let saveBody = {notes: e.notes}
+    } else if (plant.notes.length > 0) {
+      let saveBody = { notes: plant.notes }
       this.editMyPlant(saveBody)
     } else {
-      return
-    }
-    
-  }
-
-  deletePlant = () => {
-    fetch(`http://localhost:3001/api/v1/plants/${this.state.plant.attributes.id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Accepts: 'application/json'
-      }
-    })
-    .then(res => {
       this.setState({
         show: false
       })
-      this.props.fetchPlants()
-    })
+    }
+
   }
-    
+
   editMyPlant = (saveBody) => {
     fetch(`http://localhost:3001/api/v1/plants/${this.state.plant.attributes.id}`, {
       method: 'PATCH',
@@ -68,32 +71,64 @@ class MyPlants extends Component {
         saveBody
       )
     })
-    .then(res => res.json())
-    .then(plants => {
+      .then(res => res.json())
+      .then(plants => {
         this.setState({
           show: false
         })
         this.props.fetchPlants()
+      })
+  }
+
+  deletePlant = () => {
+    this.setState({
+      show: false,
+      delete: true
     })
   }
 
-  render(){
-	
-	// const { showBotDets, allBots } = this.props
-	const { plants } = this.props
+  deleteFetch = () => {
+    fetch(`http://localhost:3001/api/v1/plants/${this.state.plant.attributes.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accepts: 'application/json'
+      }
+    })
+      .then(res => {
+        this.setState({
+          delete: false
+        })
+        this.props.fetchPlants()
+      })
+  }
 
-	return (
-			<Fragment>
-  	  <div className="ui four column grid">
-    
-        {plants.map(plant => <PlantCard plant={plant} key={plant.id} showEdit={this.showEdit} />)}
-      
-  	  </div>
-      <Edit show={this.state.show} plant={this.state.plant} onClose={this.onClose} saveEdit={this.saveEdit} deletePlant={this.deletePlant} />
 
-  
-			</Fragment>
-  	);
+
+  render() {
+
+    // const { showBotDets, allBots } = this.props
+    const { plants } = this.props
+
+    return (
+      <Fragment>
+        <h2 className="your_plant_greeting" >Your plant family.</h2>
+        <br /><br /><br />
+        <div className="search-wrapper" >
+          <input className="plant_search" onChange={this.alterPlants} placeholder="Search here..." type="text" />
+        </div>
+
+        <div className="plant_container">
+
+          {this.state.alteredPlants.length > 0 ? (this.state.alteredPlants.map(plant => <PlantCard plant={plant} key={plant.id} showEdit={this.showEdit} />)) : (plants.map(plant => <PlantCard plant={plant} key={plant.id} showEdit={this.showEdit} />))}
+
+        </div>
+        <Edit show={this.state.show} plant={this.state.plant} onClose={this.onClose} saveEdit={this.saveEdit} deletePlant={this.deletePlant} />
+        <DeleteConfirm delete={this.state.delete} fetch={this.deleteFetch} plant={this.state.plant} onClose={this.onClose} />
+
+
+      </Fragment >
+    );
   }
 
 };

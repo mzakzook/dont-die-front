@@ -1,0 +1,91 @@
+.plant_search {
+  text-align: center;
+  border-radius: 25px;
+  border: 0.4px solid black;
+  width: 100%;
+  
+}
+
+.your_plant_greeting {
+  text-align: center;
+}
+
+
+
+.plant_image img {
+  /* max-width: 100%;
+  max-height: 100%;   */
+  border-radius: 5px 5px 5px 5px;
+  width: 100%;
+}
+
+.plant_container{
+  padding: 1%;
+  margin: auto;
+  
+}
+
+.plant_card {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin: 0 auto;
+  width: 60%;
+  
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  
+  
+}
+
+
+
+.plant_name {
+  padding-top: 15%;
+  padding-bottom: 2%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.other_plant_info {
+  font-size: 10px;
+}
+
+.plant_notes {
+  padding-top: 2%;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.Line-2 {
+  width: 70%;
+  border-top: solid 1px #cfcfcf;
+  margin: auto;
+  
+}
+
+.search-wrapper {
+  margin: auto;
+  width: 200px;
+}
+
+
+
+.plant_content {
+  padding-left: 3%;
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+}
+
+.plant_info {
+
+}
+
+.plant_edit {
+  
+  padding-top: 10%;
+
+}
+
+.edit-img {
+  width: 50%
+}
