@@ -1,7 +1,7 @@
 .App {
   text-align: center;
 }
-
+ 
 .App-logo {
   height: 40vmin;
 }
@@ -14,14 +14,16 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  position: sticky;
+  top: 0;
 }
 
 .App-link {
   color: #09d3ac;
 }
 
-
-
+/* .left and .right used in NavBar */
 .left {
   float: left;
 }

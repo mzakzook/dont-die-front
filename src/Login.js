@@ -63,6 +63,8 @@ class Login extends React.Component {
                 />
               </div>
               Or sign in with<br/>
+              <div>SOCIAL MEDIA ICON IN THIS DIV</div>
+              <div>ANOTHER SOCIAL FOR LOGIN ICON DIV</div>
               <button type="submit" className="ui basic green button">
                 SIGN IN
               </button>

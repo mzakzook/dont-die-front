@@ -25,6 +25,15 @@ class NewUser extends React.Component {
     e.preventDefault();
     api.auth
       .create(name, username, password)
+      .then(res => {
+        // debugger
+        if (res.error) {
+          this.setState({ error: true });
+        } else {
+          this.props.handleLogin(res);
+          // this.props.history.push('/');
+        }
+      });
 
   };
 
@@ -68,7 +77,9 @@ class NewUser extends React.Component {
                         onChange={this.handleChange}
                     />
                     </div>
-
+                    Or sign in with<br/>
+                    <div>SOCIAL MEDIA ICON IN THIS DIV</div>
+                    <div>ANOTHER SOCIAL FOR LOGIN ICON DIV</div>
                     <button type="submit" className="ui basic green button">
                     Sign Up
                     </button>

@@ -68,7 +68,6 @@ class App extends React.Component {
           {/* THIS IS WHERE THE LOGIN OR SIGNUP GOES */}
           {this.drawInput()}
         </div>
-        {console.log(this.state)}
       </div>
     );
   }
