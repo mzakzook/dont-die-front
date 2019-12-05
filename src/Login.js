@@ -2,6 +2,8 @@ import React from 'react';
 import api from './services/api';
 import './Login.css'
 import sidepic from './pics/SignIn_RightAlignedImg.png'
+import googleIcon from './pics/Google_Logo.png'
+import fbIcon from './pics/FB_Logo.png' 
  
 class Login extends React.Component {
   constructor() {
@@ -48,7 +50,6 @@ class Login extends React.Component {
                 <label>Username</label><br/>
                 <input
                   name="username"
-                  placeholder="username"
                   value={fields.username}
                   onChange={this.handleChange}
                 />
@@ -58,14 +59,18 @@ class Login extends React.Component {
                 <input
                   name="password"
                   type="password"
-                  placeholder="password"
                   value={fields.password}
                   onChange={this.handleChange}
                 />
               </div>
               Or sign in with<br/>
-              <div>SOCIAL MEDIA ICON IN THIS DIV</div>
-              <div>ANOTHER SOCIAL FOR LOGIN ICON DIV</div>
+
+              <div>
+                <img className='loginIcon' src={googleIcon} alt='' />
+                <img className='loginIcon' src={fbIcon} alt='' />
+
+              </div>
+
               <button type="submit" className="ui basic green button">
                 SIGN IN
               </button>
@@ -73,7 +78,7 @@ class Login extends React.Component {
           </div>
         </div>
         <div className='imgBox'>
-          <img className='center-fit'src={sidepic} alt='' />
+          <img className='right-fit'src={sidepic} alt='' />
         </div>
       </div> 
     );
