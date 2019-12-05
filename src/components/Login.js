@@ -1,6 +1,10 @@
 import React from 'react';
 import api from '../services/api';
-
+import './Login.css'
+import sidepic from './pics/SignIn_RightAlignedImg.png'
+import googleIcon from './pics/Google_Logo.png'
+import fbIcon from './pics/FB_Logo.png' 
+ 
 class Login extends React.Component {
   constructor() {
     super();
@@ -36,35 +40,47 @@ class Login extends React.Component {
   render() {
     const { fields } = this.state;
     return (
-      <div>
-        {this.state.error ? <h1>Try Again</h1> : null}
-        <div className="ui form">
-          <form onSubmit={this.handleSubmit}>
-            <div className="ui field">
-              <label>Username</label>
-              <input
-                name="username"
-                placeholder="username"
-                value={fields.username}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="ui field">
-              <label>Password</label>
-              <input
-                name="password"
-                type="password"
-                placeholder="password"
-                value={fields.password}
-                onChange={this.handleChange}
-              />
-            </div>
-            <button type="submit" className="ui basic green button">
-              Login
-            </button>
-          </form>
+      <div className='signInWrapper'>
+        <div className='signInForm'>
+          {this.state.error ? <h1>Try Again</h1> : null}
+          <div className="ui form">
+            <h2>SIGN IN</h2>
+            <form onSubmit={this.handleSubmit}>
+              <div className="ui field">
+                <label>Username</label><br/>
+                <input
+                  name="username"
+                  value={fields.username}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="ui field">
+                <label>Password</label><br/>
+                <input
+                  name="password"
+                  type="password"
+                  value={fields.password}
+                  onChange={this.handleChange}
+                />
+              </div>
+              Or sign in with<br/>
+
+              <div>
+                <img className='loginIcon' src={googleIcon} alt='' />
+                <img className='loginIcon' src={fbIcon} alt='' />
+
+              </div>
+
+              <button type="submit" className="ui basic green button">
+                SIGN IN
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+        <div className='imgBox'>
+          <img className='right-fit'src={sidepic} alt='' />
+        </div>
+      </div> 
     );
   }
 }
