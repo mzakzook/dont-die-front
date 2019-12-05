@@ -14,7 +14,7 @@ class Landing extends Component {
                     <img className ='landingImg' src="https://image.shutterstock.com/image-photo/young-plant-pomelo-soil-humus-260nw-748350841.jpg" alt='' />
                     <div className='landingContent'>
                         <h2>Research & Discover</h2>
-                        This is testing any text below the sections heading.  What will lots of text look like?  Many 
+                        This is testing any text below the section's heading.  What will lots of text look like?  Many 
                         people would like to know!  Such people may also want tot know that the first word in the last 
                         sentence (i.e. "Many") has a carriage return after it.  As well as "last" in the last sentence.
                     </div>

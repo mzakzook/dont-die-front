@@ -24,7 +24,6 @@ const create = (fullname, username, password) => {
     })
   })
   .then(resp => resp.json())
-  .then(json => console.log(json))
 }
 
 const login = (username, password) => {

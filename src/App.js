@@ -5,6 +5,7 @@ import './App.css';
 import NavBar from './NavBar'
 import NewUser from './NewUser'
 import Landing from './Landing'
+import HeaderImg from './HeaderImg'
 
 class App extends React.Component {
   state = { 
@@ -48,7 +49,12 @@ class App extends React.Component {
     } else if (this.state.navButtons === 'signup') {
       return <NewUser handleLogin={this.handleLogin} />
     } else {
-      return <Landing />
+      return ( 
+        <div>
+          <HeaderImg />
+          <Landing />
+        </div>
+      )
     }
   }
 
@@ -62,7 +68,6 @@ class App extends React.Component {
           {/* THIS IS WHERE THE LOGIN OR SIGNUP GOES */}
           {this.drawInput()}
         </div>
-        {console.log(this.state)}
       </div>
     );
   }
