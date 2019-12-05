@@ -18,15 +18,12 @@
     grid-template-columns: 2fr 1fr;
 }
 
-.landingRight .landingContent {
-    text-align: center;
-}
 
 .landingImg {
     width: 100%;
 }
 
 .appButton {
-
     margin: 10px;
+    width: 200px 
 }

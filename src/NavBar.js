@@ -26,6 +26,7 @@ class NavBar extends Component {
     }
 
     render(){
+
         return (
             <div>
                 <div className='left'>
@@ -33,6 +34,9 @@ class NavBar extends Component {
                 </div>
                     {this.state.buttons && this.drawButtons()}
                 
+
+
+
             </div>
         )
     }
