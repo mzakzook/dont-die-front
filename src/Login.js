@@ -1,6 +1,7 @@
 import React from 'react';
 import api from './services/api';
 import './Login.css'
+import sidepic from './pics/SignIn_RightAlignedImg.png'
  
 class Login extends React.Component {
   constructor() {
@@ -71,7 +72,9 @@ class Login extends React.Component {
             </form>
           </div>
         </div>
-        <div>SOMETHING NEXT TO THE FORMS & STUFF</div>
+        <div className='imgBox'>
+          <img className='center-fit'src={sidepic} alt='' />
+        </div>
       </div> 
     );
   }
