@@ -1,11 +1,30 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import logo from './logo.svg';
 import api from './services/api';
-import Login from './Login';
+import Login from './components/Login';
 import './App.css';
+import MyPlants from './containers/MyPlants';
+import { Route, Switch, withRouter } from 'react-router-dom';
+
 
 class App extends React.Component {
-  state = { auth: { currentUser: {} } };
+  state = { 
+    auth: { currentUser: {} },
+    plants: []
+  };
+  
+ 
+  
+  fetchPlants = () => {
+    
+    fetch(`http://localhost:3001/api/v1/plants?my_plants=${this.state.auth.currentUser.user.id}`)
+    .then(res => res.json())
+    .then(plants => {
+        this.setState({
+          plants: plants.data
+        })
+    })
+  }
 
   componentDidMount() {
     console.log('CDM in APP');
@@ -13,11 +32,17 @@ class App extends React.Component {
     if (token) {
       api.auth.getCurrentUser().then(user => {
         const currentUser = { currentUser: user };
-        debugger
-        this.setState({ auth: currentUser });
+        
+        this.setState({ auth: currentUser }, () => {
+          this.fetchPlants()
+        });
       });
+      
     }
+    
   }
+
+  
 
   handleLogin = user => {
     const currentUser = { currentUser: user };
@@ -31,20 +56,41 @@ class App extends React.Component {
     this.setState({ auth: { currentUser: {} } });
   };
 
+
   render() {
+
+    const { plants } = this.state
+
     return (
-      <div className="App">
-        
-        <div id="content" className="ui container">
-       
    
-                  <Login handleLogin={this.handleLogin} />
-          
-        </div>
-      </div>
+        <Switch>
+            <Route
+              path="/login"
+              render={routerProps => {
+                return (
+                  <Login {...routerProps} handleLogin={this.handleLogin} />
+                );
+              }}
+            />
+            <Route path="/my-plants" render={routerProps => {
+              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+              return (
+                <Fragment>
+                <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
+                </Fragment>
+              );
+            }}
+            />
+            
+          </Switch>
+   
+
+
     );
   }
 
 }
 
 export default App;
+
+
