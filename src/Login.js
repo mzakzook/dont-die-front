@@ -2,6 +2,8 @@ import React from 'react';
 import api from './services/api';
 import './Login.css'
 import sidepic from './pics/SignIn_RightAlignedImg.png'
+import googleIcon from './pics/Google_Logo.png'
+import fbIcon from './pics/FB_Logo.png' 
  
 class Login extends React.Component {
   constructor() {
@@ -64,8 +66,13 @@ class Login extends React.Component {
                 />
               </div>
               Or sign in with<br/>
-              <div>SOCIAL MEDIA ICON IN THIS DIV</div>
-              <div>ANOTHER SOCIAL FOR LOGIN ICON DIV</div>
+
+              <div>
+                <img className='loginIcon' src={googleIcon} alt='' />
+                <img className='loginIcon' src={fbIcon} alt='' />
+
+              </div>
+
               <button type="submit" className="ui basic green button">
                 SIGN IN
               </button>
