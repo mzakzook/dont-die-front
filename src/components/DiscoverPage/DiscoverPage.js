@@ -35,12 +35,12 @@ class DiscoverPage extends React.Component {
                     postBody
                 )
             })
-            .then(res => res.json())
-            .then(data => {
-                this.setState({
-                    show: false
+                .then(res => res.json())
+                .then(data => {
+                    this.setState({
+                        show: false
+                    })
                 })
-            })
         }
         console.log(e)
         console.log(plant)
@@ -48,10 +48,10 @@ class DiscoverPage extends React.Component {
 
     onClose = () => {
         this.setState({
-          show: false
+            show: false
         })
-      }
-    
+    }
+
 
     // showConfirmation = () => {
     //     console.log('hello')
@@ -91,14 +91,21 @@ class DiscoverPage extends React.Component {
 
     render() {
         return (
-           <div>
-            <Add show={this.state.show} speci={this.state.speci} curentUser={this.props.currentUser} saveNew={this.saveNew}/>
-            <div className="discover-container">
-                {this.state.species.map(s => {
-                    return <SpeciesCard key={s.id} species={s} add={this.showAdd} />
-                })
-                }
-            </div>
+            <div>
+                <Add show={this.state.show} speci={this.state.speci} curentUser={this.props.currentUser} saveNew={this.saveNew} />
+                <div className="discover-container">
+                    <div className="Find-your-match">
+                        Find your match.
+                        <hr size="1" align="center"></hr>
+                    </div>
+                    {/* <div className="Browse-all-houseplants">Browse all Houseplants</div> */}
+                    <div className="cards-container">
+                        {this.state.species.map(s => {
+                            return <SpeciesCard key={s.id} species={s} add={this.showAdd} />
+                        })
+                        }
+                   </div>
+                </div>
             </div>
         )
     }
