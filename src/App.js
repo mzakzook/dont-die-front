@@ -2,7 +2,11 @@
 import React, {Fragment} from 'react';
 import logo from './logo.svg';
 import api from './services/api';
+
+import DiscoverPage from './components/DiscoverPage/DiscoverPage'
+
 import Login from './components/Login';
+
 import './App.css';
 import MyPlants from './containers/MyPlants';
 import { Route, Switch, withRouter } from 'react-router-dom';
@@ -54,6 +58,7 @@ class App extends React.Component {
   handleLogin = user => {
     const currentUser = { currentUser: user };
     localStorage.setItem('token', user.token);
+
     this.setState({ auth: currentUser });
   };
 
@@ -89,6 +94,15 @@ class App extends React.Component {
 
     return (
 
+      <div className="App">
+
+        <div id="content" className="ui container">
+          <Login handleLogin={this.handleLogin} />
+          <DiscoverPage currentUser={this.state.auth.currentUser} />
+        </div>
+      </div>
+
+
    
         // <Switch>
         //     <Route
@@ -123,6 +137,7 @@ class App extends React.Component {
           {this.drawInput()}
         </div>
       </div>
+
 
     );
   }

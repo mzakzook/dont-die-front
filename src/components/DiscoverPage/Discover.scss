@@ -1,0 +1,86 @@
+.discover-container {
+    padding: 60px;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // grid-gap: 30px;
+
+    .cards-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 30px;
+        margin-top: 60px;
+    }
+
+    img {
+        border-radius: 15px;
+        height: 100%;
+        width: 205px;
+    }
+
+    .btn {
+        position: absolute;
+        border-radius: 17px;
+        border: solid 2px #ffffff;
+        background-color: rgb(255, 255, 255);
+        width: 50px;
+        right: 25%;
+        bottom: 10px;
+        text-align: center;
+    }
+
+    // .btn {
+    //     width: 119px;
+    //     height: 34px;
+    //     border-radius: 17px;
+    //     border: solid 2px #ffffff;
+    //     background-color: rgba(0, 0, 0, 0.3);
+    // }
+
+    .card {
+        position: relative;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        border: 1px solid rgb(242, 242, 245);
+        border-radius: 15px;
+        height: 410px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+    .info {
+        padding: 20px;
+    }
+
+    .Find-your-match {
+        height: 80px;
+        font-family: NotoSansTC;
+        font-size: 25px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.22px;
+        text-align: center;
+        color: #00260f;
+      }    
+    
+    hr {
+        margin-top: 60px;
+    }
+
+    // .Browse-all-houseplants {
+        
+    //     margin-left: -40px;
+    //     width: 355px;
+    //     height: 40px;
+    //     font-family: Roboto;
+    //     font-size: 24px;
+    //     font-weight: normal;
+    //     font-stretch: normal;
+    //     font-style: normal;
+    //     line-height: normal;
+    //     letter-spacing: 0.19px;
+    //     text-align: center;
+    //     color: #000000;
+    //   }
+}
+
