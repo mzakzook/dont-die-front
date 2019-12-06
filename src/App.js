@@ -72,7 +72,9 @@ class App extends React.Component {
     
     localStorage.setItem('token', user.token);
 
-    this.setState({ auth: { currentUser } });
+    this.setState({ auth: { currentUser } }, () => {
+      this.fetchPlants()
+    });
   };
 
   handleLogout = () => {
