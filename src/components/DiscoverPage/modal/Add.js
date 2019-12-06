@@ -31,8 +31,8 @@ class Add extends React.Component {
             return null;
         }
         return (
-            <div id="myModal" className="modal">
-                <div className="modal-content">
+            <div id="myModal" className="add-modal">
+                <div className="add-modal-content">
                     <form onSubmit={(event) => {
                         this.props.saveNew(event, this.state)
                     }}>
@@ -59,7 +59,8 @@ class Add extends React.Component {
                         <button
                             type="submit"
                             className="btn btn-primary" >Save
-                </button>
+                        </button>
+                        <span id="close" onClick={this.props.onClose}>X</span>
                     </form>
                 </div>
             </div>

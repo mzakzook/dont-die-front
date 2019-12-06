@@ -95,7 +95,7 @@ class DiscoverPage extends React.Component {
     render() {
         return (
             <div>
-                <Add show={this.state.show} speci={this.state.speci} curentUser={this.props.currentUser} saveNew={this.saveNew} />
+                <Add show={this.state.show} speci={this.state.speci} curentUser={this.props.currentUser} saveNew={this.saveNew} onClose={this.onClose} />
                 <div className="discover-container">
                     <div className="Find-your-match">
                         Find your match.
@@ -104,7 +104,7 @@ class DiscoverPage extends React.Component {
                     {/* <div className="Browse-all-houseplants">Browse all Houseplants</div> */}
                     <div className="cards-container">
                         {this.state.species.map(s => {
-                            return <SpeciesCard key={s.id} species={s} add={this.showAdd} />
+                            return <SpeciesCard key={s.id} species={s} add={this.showAdd}  />
                         })
                         }
                    </div>
