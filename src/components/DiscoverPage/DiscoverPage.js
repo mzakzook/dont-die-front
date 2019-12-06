@@ -40,6 +40,8 @@ class DiscoverPage extends React.Component {
                     this.setState({
                         show: false
                     })
+                    this.props.fetchPlants()
+                    this.props.history.push('/my-plants')
                 })
         }
         console.log(e)

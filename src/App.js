@@ -123,7 +123,7 @@ class App extends React.Component {
                     
                     <HeaderImg />
                     <SecondNav />
-                  <DiscoverPage {...routerProps} currentUser={this.state.auth.currentUser.user} handleLogin={this.handleLogin} />
+                  <DiscoverPage {...routerProps} fetchPlants={this.fetchPlants} currentUser={this.state.auth.currentUser.user} handleLogin={this.handleLogin} />
                   </Fragment>
                 );
               }}
