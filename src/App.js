@@ -14,12 +14,15 @@ import NavBar from './NavBar'
 import NewUser from './NewUser'
 import Landing from './Landing'
 import HeaderImg from './HeaderImg'
+import SecondNav from './SecondNav'
+
 
 class App extends React.Component {
   state = { 
     auth: { currentUser: {} },
     plants: [],
-    navButtons: true
+    navButtons: true,
+    secNav: true
   };
   
  
@@ -65,6 +68,7 @@ class App extends React.Component {
   handleLogout = () => {
     localStorage.removeItem('token');
     this.setState({ auth: { currentUser: {} } });
+    this.props.history.push('/')
   };
 
   //passed as props to NavBar
@@ -72,20 +76,20 @@ class App extends React.Component {
     this.setState({navButtons: e.target.id})
   }
 
-  drawInput = () => {
-    if (this.state.navButtons === 'signin') {
-      return <Login handleLogin={this.handleLogin} />
-    } else if (this.state.navButtons === 'signup') {
-      return <NewUser handleLogin={this.handleLogin} />
-    } else {
-      return ( 
-        <div>
-          <HeaderImg />
-          <Landing />
-        </div>
-      )
-    }
-  }
+  // drawInput = () => {
+  //   if (this.state.navButtons === 'signin') {
+  //     return <Login handleLogin={this.handleLogin} />
+  //   } else if (this.state.navButtons === 'signup') {
+  //     return <NewUser handleLogin={this.handleLogin} />
+  //   } else {
+  //     return ( 
+  //       <div>
+  //         <HeaderImg />
+  //         <Landing />
+  //       </div>
+  //     )
+  //   }
+  // }
 
 
   render() {
@@ -93,7 +97,9 @@ class App extends React.Component {
     const { plants } = this.state
 
     return (
-
+<Fragment>
+                    <NavBar currentUser={this.state.auth.currentUser.user} logout={this.handleLogout} />
+                    
 
    
         <Switch>
@@ -102,7 +108,7 @@ class App extends React.Component {
               render={routerProps => {
                 return (
                   <Fragment>
-                    <NavBar />
+                    
                     <Login {...routerProps} handleLogin={this.handleLogin} />
                   </Fragment>
                   
@@ -114,8 +120,9 @@ class App extends React.Component {
               render={routerProps => {
                 return (
                   <Fragment>
-                    <NavBar />
+                    
                     <HeaderImg />
+                    <SecondNav />
                   <DiscoverPage {...routerProps} currentUser={this.state.auth.currentUser.user} handleLogin={this.handleLogin} />
                   </Fragment>
                 );
@@ -125,8 +132,9 @@ class App extends React.Component {
               // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
               return (
                 <Fragment>
-                  <NavBar />
+                  
                   <HeaderImg />
+                  <SecondNav />
                 <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
                 </Fragment>
               );
@@ -136,7 +144,7 @@ class App extends React.Component {
               // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
               return (
                 <Fragment>
-                  <NavBar />
+                  
                   <HeaderImg />
                 <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
                 </Fragment>
@@ -147,8 +155,8 @@ class App extends React.Component {
               // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
               return (
                 <Fragment>
-                  <NavBar />
-                <NewUser handleLogin={this.handleLogin} />
+                  
+                <NewUser {...routerProps} handleLogin={this.handleLogin} />
                 </Fragment>
               );
             }}
@@ -157,7 +165,7 @@ class App extends React.Component {
               // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
               return (
                 <Fragment>
-                  <NavBar />
+                  
                 <HeaderImg />
                 <Landing />
                 </Fragment>
@@ -167,7 +175,7 @@ class App extends React.Component {
             
           </Switch>
    
-
+          </Fragment>
 
 
       // <div className="App">
@@ -187,7 +195,7 @@ class App extends React.Component {
 }
 
 
-export default App;
+export default withRouter(App);
 
 
 
