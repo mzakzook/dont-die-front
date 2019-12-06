@@ -1,9 +1,9 @@
 import React from 'react';
 import api from '../services/api';
-import './Login.css'
-import sidepic from './pics/SignIn_RightAlignedImg.png'
-import googleIcon from './pics/Google_Logo.png'
-import fbIcon from './pics/FB_Logo.png' 
+import '../Login.css'
+import sidepic from '../pics/SignIn_RightAlignedImg.png'
+import googleIcon from '../pics/Google_Logo.png'
+import fbIcon from '../pics/FB_Logo.png' 
  
 class Login extends React.Component {
   constructor() {

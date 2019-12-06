@@ -90,39 +90,39 @@ class App extends React.Component {
     return (
 
    
-        <Switch>
-            <Route
-              path="/login"
-              render={routerProps => {
-                return (
-                  <Login {...routerProps} handleLogin={this.handleLogin} />
-                );
-              }}
-            />
-            <Route path="/my-plants" render={routerProps => {
-              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
-              return (
-                <Fragment>
-                <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
-                </Fragment>
-              );
-            }}
-            />
+        // <Switch>
+        //     <Route
+        //       path="/login"
+        //       render={routerProps => {
+        //         return (
+        //           <Login {...routerProps} handleLogin={this.handleLogin} />
+        //         );
+        //       }}
+        //     />
+        //     <Route path="/my-plants" render={routerProps => {
+        //       // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+        //       return (
+        //         <Fragment>
+        //         <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
+        //         </Fragment>
+        //       );
+        //     }}
+        //     />
             
-          </Switch>
+        //   </Switch>
    
 
 
 
-      // <div className="App">
-      //   <div className='App-header'>
-      //     <NavBar navButtonClick={this.navButtonClick} />
-      //   </div>
-      //   <div id="content" className="ui container">
-      //     {/* THIS IS WHERE THE LOGIN OR SIGNUP GOES */}
-      //     {this.drawInput()}
-      //   </div>
-      // </div>
+      <div className="App">
+        <div className='App-header'>
+          <NavBar navButtonClick={this.navButtonClick} />
+        </div>
+        <div id="content" className="ui container">
+          {/* THIS IS WHERE THE LOGIN OR SIGNUP GOES */}
+          {this.drawInput()}
+        </div>
+      </div>
 
     );
   }
