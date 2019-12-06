@@ -1,0 +1,21 @@
+.signInWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.imgBox {
+    height: 100%;
+}
+
+.right-fit {
+    max-width: 100vh;
+    max-height: 90vh;
+    float: right;
+}
+
+input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+    margin: 10px 10px 20px 10px;
+}
