@@ -31,8 +31,9 @@ class Login extends React.Component {
         if (res.error) {
           this.setState({ error: true });
         } else {
+          debugger
           this.props.handleLogin(res);
-          // this.props.history.push('/');
+          this.props.history.push('/discover');
         }
       });
   };

@@ -46,6 +46,7 @@ class App extends React.Component {
         
         this.setState({ auth: currentUser }, () => {
           this.fetchPlants()
+          
         });
 
       });
@@ -58,7 +59,6 @@ class App extends React.Component {
   handleLogin = user => {
     const currentUser = { currentUser: user };
     localStorage.setItem('token', user.token);
-
     this.setState({ auth: currentUser });
   };
 
@@ -94,49 +94,91 @@ class App extends React.Component {
 
     return (
 
-      <div className="App">
-
-        <div id="content" className="ui container">
-          <Login handleLogin={this.handleLogin} />
-          <DiscoverPage currentUser={this.state.auth.currentUser} />
-        </div>
-      </div>
-
 
    
-        // <Switch>
-        //     <Route
-        //       path="/login"
-        //       render={routerProps => {
-        //         return (
-        //           <Login {...routerProps} handleLogin={this.handleLogin} />
-        //         );
-        //       }}
-        //     />
-        //     <Route path="/my-plants" render={routerProps => {
-        //       // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
-        //       return (
-        //         <Fragment>
-        //         <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
-        //         </Fragment>
-        //       );
-        //     }}
-        //     />
+        <Switch>
+            <Route
+              path="/login"
+              render={routerProps => {
+                return (
+                  <Fragment>
+                    <NavBar />
+                    <Login {...routerProps} handleLogin={this.handleLogin} />
+                  </Fragment>
+                  
+                );
+              }}
+            />
+            <Route
+              path="/discover"
+              render={routerProps => {
+                return (
+                  <Fragment>
+                    <NavBar />
+                    <HeaderImg />
+                  <DiscoverPage {...routerProps} currentUser={this.state.auth.currentUser.user} handleLogin={this.handleLogin} />
+                  </Fragment>
+                );
+              }}
+            />
+            <Route path="/my-plants" render={routerProps => {
+              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+              return (
+                <Fragment>
+                  <NavBar />
+                  <HeaderImg />
+                <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
+                </Fragment>
+              );
+            }}
+            />
+            <Route path="/my-plants" render={routerProps => {
+              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+              return (
+                <Fragment>
+                  <NavBar />
+                  <HeaderImg />
+                <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
+                </Fragment>
+              );
+            }}
+            />
+            <Route path="/signup" render={routerProps => {
+              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+              return (
+                <Fragment>
+                  <NavBar />
+                <NewUser handleLogin={this.handleLogin} />
+                </Fragment>
+              );
+            }}
+            />
+            <Route path="/" render={routerProps => {
+              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+              return (
+                <Fragment>
+                  <NavBar />
+                <HeaderImg />
+                <Landing />
+                </Fragment>
+              );
+            }}
+            />
             
-        //   </Switch>
+          </Switch>
    
 
 
 
-      <div className="App">
-        <div className='App-header'>
-          <NavBar navButtonClick={this.navButtonClick} />
-        </div>
-        <div id="content" className="ui container">
-          {/* THIS IS WHERE THE LOGIN OR SIGNUP GOES */}
-          {this.drawInput()}
-        </div>
-      </div>
+      // <div className="App">
+      //   <div className='App-header'>
+      //     <NavBar navButtonClick={this.navButtonClick} />
+      //   </div>
+      //   <div id="content" className="ui container">
+      //     {/* THIS IS WHERE THE LOGIN OR SIGNUP GOES */}
+      //     {this.drawInput()}
+      //   </div>
+      // </div>
 
 
     );
