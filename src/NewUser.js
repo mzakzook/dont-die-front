@@ -34,7 +34,7 @@ class NewUser extends React.Component {
           this.setState({ error: true });
         } else {
           this.props.handleLogin(res);
-          // this.props.history.push('/');
+          this.props.history.push('/discover');
         }
       });
 

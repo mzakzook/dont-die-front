@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 
 class NavBar extends Component {
-    constructor() {
-        super();
-        this.state = {
-            buttons: true
-        }
-    }
+    
+    
+    
     buttonClick = (e) => {
-        // this.setState({buttons: false})
-        this.props.navButtonClick(e);
+        this.props.history.push(`/${e.target.name}`)
     }
 
     drawButtons = () => {
         return (
             <div className='right'>
-                <button id='signin' onClick={(e) => this.buttonClick(e)}>
+                <button id='signin' name="login" onClick={(e) => this.buttonClick(e)}>
                     SIGN IN
                 </button> 
-                <button id='signup' onClick={(e) => this.buttonClick(e)}>
+                <button id='signup' name="signup" onClick={(e) => this.buttonClick(e)}>
                     SIGN UP
                 </button>
+            </div>
+        )
+    }
+
+    drawLogout = () => {
+        return (
+            <div className='right'>
+                <button id='logout' name="logout" onClick={this.props.logout}>
+                    LOG OUT
+                </button> 
             </div>
         )
     }
@@ -32,7 +39,8 @@ class NavBar extends Component {
                 <div className='left'>
                     DON'T DIE
                 </div>
-                    {this.state.buttons && this.drawButtons()}
+                    {this.props.currentUser ? (this.drawLogout()) : (this.drawButtons())}
+                    {/* {this.state.buttons && this.drawButtons()} */}
                 
 
 
@@ -43,4 +51,4 @@ class NavBar extends Component {
 
 }
 
-export default NavBar
+export default withRouter(NavBar)
