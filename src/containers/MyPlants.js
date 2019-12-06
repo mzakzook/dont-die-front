@@ -17,7 +17,7 @@ class MyPlants extends Component {
   }
 
   alterPlants = (e) => {
-    debugger
+    
     const newArr = this.props.plants.filter(plant => plant.attributes.name.toLowerCase().includes(e.target.value.toLowerCase()) || plant.attributes.species.name.toLowerCase().includes(e.target.value.toLowerCase()))
     this.setState({
       alteredPlants: newArr

@@ -33,7 +33,10 @@ class NewUser extends React.Component {
         if (res.error) {
           this.setState({ error: true });
         } else {
-          this.props.handleLogin(res);
+          
+          const {id, name, username} = res.user.data.attributes
+          const newUser = {user: {id, name, username}, token: res.token }
+          this.props.handleLogin(newUser);
           this.props.history.push('/discover');
         }
       });

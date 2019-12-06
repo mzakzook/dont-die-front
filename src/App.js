@@ -1,5 +1,5 @@
 
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import logo from './logo.svg';
 import api from './services/api';
 
@@ -18,23 +18,30 @@ import SecondNav from './SecondNav'
 
 
 class App extends React.Component {
-  state = { 
+  state = {
     auth: { currentUser: {} },
     plants: [],
     navButtons: true,
     secNav: true
   };
-  
- 
-  
+
+
+
   fetchPlants = () => {
-    
+
     fetch(`http://localhost:3001/api/v1/plants?my_plants=${this.state.auth.currentUser.user.id}`)
-    .then(res => res.json())
-    .then(plants => {
+      .then(res => res.json())
+      .then(plants => {
         this.setState({
           plants: plants.data
         })
+      })
+  }
+
+  addPlant = (plant) => {
+    const newArr = [plant, ...this.state.plants]
+    this.setState({
+      plants: newArr
     })
   }
 
@@ -44,36 +51,44 @@ class App extends React.Component {
     const token = localStorage.getItem('token');
     if (token) {
       api.auth.getCurrentUser().then(user => {
+        
         const currentUser = { currentUser: user };
 
-        
+
         this.setState({ auth: currentUser }, () => {
           this.fetchPlants()
-          
+
         });
 
       });
-      
+
     }
-    
+
   }
 
 
   handleLogin = user => {
-    const currentUser = { currentUser: user };
+    const currentUser = {user: user.user};
+    
     localStorage.setItem('token', user.token);
-    this.setState({ auth: currentUser });
+
+    this.setState({ auth: { currentUser } });
   };
 
   handleLogout = () => {
     localStorage.removeItem('token');
-    this.setState({ auth: { currentUser: {} } });
+    this.setState({
+      auth: { currentUser: {} },
+      plants: [],
+      navButtons: true,
+      secNav: true
+    });
     this.props.history.push('/')
   };
 
   //passed as props to NavBar
   navButtonClick = (e) => {
-    this.setState({navButtons: e.target.id})
+    this.setState({ navButtons: e.target.id })
   }
 
   // drawInput = () => {
@@ -97,85 +112,76 @@ class App extends React.Component {
     const { plants } = this.state
 
     return (
-<Fragment>
-                    <NavBar currentUser={this.state.auth.currentUser.user} logout={this.handleLogout} />
-                    
+      <Fragment>
 
-   
+        <NavBar currentUser={this.state.auth.currentUser.user} logout={this.handleLogout} />
+
+
+
         <Switch>
-            <Route
-              path="/login"
-              render={routerProps => {
-                return (
-                  <Fragment>
-                    
-                    <Login {...routerProps} handleLogin={this.handleLogin} />
-                  </Fragment>
-                  
-                );
-              }}
-            />
-            <Route
-              path="/discover"
-              render={routerProps => {
-                return (
-                  <Fragment>
-                    
-                    <HeaderImg />
-                    <SecondNav />
-                  <DiscoverPage {...routerProps} fetchPlants={this.fetchPlants} currentUser={this.state.auth.currentUser.user} handleLogin={this.handleLogin} />
-                  </Fragment>
-                );
-              }}
-            />
-            <Route path="/my-plants" render={routerProps => {
-              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+          <Route
+            path="/login"
+            render={routerProps => {
               return (
                 <Fragment>
-                  
+
+                  <Login {...routerProps} handleLogin={this.handleLogin} />
+                </Fragment>
+
+              );
+            }}
+          />
+          <Route
+            path="/discover"
+            render={routerProps => {
+              return (
+                <Fragment>
+
                   <HeaderImg />
                   <SecondNav />
-                <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
+                  <DiscoverPage addPlant={this.addPlant} {...routerProps} fetchPlants={this.fetchPlants} currentUser={this.state.auth.currentUser.user} handleLogin={this.handleLogin} />
                 </Fragment>
               );
             }}
-            />
-            <Route path="/my-plants" render={routerProps => {
-              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
-              return (
-                <Fragment>
-                  
-                  <HeaderImg />
+          />
+          <Route path="/my-plants" render={routerProps => {
+            // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+            return (
+              <Fragment>
+
+                <HeaderImg />
+                <SecondNav />
                 <MyPlants {...routerProps} currentUser={this.state.auth.currentUser} plants={plants} fetchPlants={this.fetchPlants} />
-                </Fragment>
-              );
-            }}
-            />
-            <Route path="/signup" render={routerProps => {
-              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
-              return (
-                <Fragment>
-                  
+              </Fragment>
+            );
+          }}
+          />
+
+          <Route path="/signup" render={routerProps => {
+            // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+            return (
+              <Fragment>
+
                 <NewUser {...routerProps} handleLogin={this.handleLogin} />
-                </Fragment>
-              );
-            }}
-            />
-            <Route path="/" render={routerProps => {
-              // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
-              return (
-                <Fragment>
-                  
+              </Fragment>
+            );
+          }}
+          />
+          <Route path="/" render={routerProps => {
+            // after return on line 76? (this.state.plants.length === 0) ? (<div>Loading...</div>) : 
+            return (
+              <Fragment>
+
                 <HeaderImg />
                 <Landing />
-                </Fragment>
-              );
-            }}
-            />
-            
-          </Switch>
-   
-          </Fragment>
+              </Fragment>
+            );
+          }}
+          />
+
+        </Switch>
+
+      </Fragment>
 
 
       // <div className="App">
